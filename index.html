@@ -86,13 +86,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#翻译Python language reference(1)—3.数据模型</p>
-<p>##3.1 对象，值，和类型<br>&emsp;&emsp;对象是python对数据的抽象，python程序中的一切数据均由对象和对象之间的关系来表示（在某种意义上，这与Von Neumann的“存储程序的计算机”模型一致，代码也被表示为对象。）。<br>每一个对象都具有一个标识，一个类型和一个数值。自创建起，对象的id不会改变，你可以把他理解成对象在内存的地址。<code>is</code>运算符比较两个对象的身份标识; <code>id()</code> 函数返回一个代表id的整数。<br>&emsp;&emsp;<strong>CPython实现细节</strong>：对于CPython来说，<code>id(x)</code>返回存储x的内存地址。<br>&emsp;&emsp;一个对象的类型决定了对象所支持的操作，也定义了对象可能的取值。<code>type()</code>函数返回对象的类型（返回值自身也是对象）。如同对象的id，对象的类型也是不能改变的。【1】<br>&emsp;&emsp;某些对象的值可以改变，数值可以改变的对象被称为mutable；创建后取值不可变的对象被称为immutable。（一个引用到可变对象的不可变容器对象的值在后者的值改变时可以被改变，尽管如此，容器依然被认为是不可变的，因为他引用到的对象不能改变，所以，immutability和值不变是两个不完全相同的概念，后者更顽固。）一个对象的可变性由对象的类型决定；例如，数值，字符串，元组是不可变类型，而字典和列表是可变类型。<br>&emsp;&emsp;对象永远不能被明确指定销毁；然而，当他们变得不可访问时会被GC回收。一种实现允许你延迟垃圾回收或者忽略他-这是垃圾回收的实现质量的问题–有一定是确定的，没有对象会在可以被访问的时候被回收。<br>&emsp;&emsp;<strong>CPython实现细节</strong>：CPython currently uses a reference-counting scheme with (optional) delayed detection of cyclically linked garbage（CPython目前使用引用计数的方式对循环引用的垃圾做延迟检测）, which collects most objects as soon as they become unreachable, but is not guaranteed to collect garbage containing circular references.（他会在对象变得不可用时搜集其中的大多数，但是不保证收集包含循环引用的垃圾） See the documentation of the gc module for information on controlling the collection of cyclic garbage. （参考gc模块的文档来获取关于循环垃圾回收控制的实现细节）Other implementations act differently and CPython may change. Do not depend on immediate finalization of objects when they become unreachable (so you should always close files explicitly).<br>&emsp;&emsp;注意到使用追踪或者调试工具可以保持对象生存，同时注意通过<code>try...except</code>语句捕获异常可以达到同样的效果。<br>&emsp;&emsp;一些对象包含了对外部资源的引用，比如打开文件或窗体。很明显这些资源在垃圾回收时会被释放。考虑到gc并不能保证会发生，这类对象提供了明确的方法来释放外部资源，通常是<code>close()</code>方法，强烈建议程序明确的关闭此类对象，语句<code>try...finally</code>和<code>with</code>为完成这样的工作提供了合适的途径。<br>一些对象包含了对其他对象的引用；这些对象叫做容器例如元组，列表和字典。引用仅仅是容器取值的一部分，在大多数情况下，当我们谈及容器的值时，我们指的是取值而不仅是所包含对象的身份标识；然而当我们讨论容器的可变性的时候，指的仅仅是容器包含的对象的身份。因此，如果一个不可变容器包含了对可变对象的引用，他的取值会随着可变对象的改变而改变。<br>&emsp;&emsp;类型影响着对象行为的方方面面。在某种意义上，甚至于id的重要性也受到影响：对于不可变类型，计算新值的操作会返回对相同类型和数值的已存在对象的引用，然而对可变对象这是不允许的。E.g.,在<code>a=1;b=1</code>之后，a和b是否引用到相同对象（数值1）引来于实现机制，而在执行<code>c=[];d=[]</code>之后，c和d确定会引用到两个不同的，独立的，新的空列表。（注意这与<code>c=d=[]</code>的复制操作不同）。</p>
+        <h1 id="翻译Python-language-reference-1-—3-数据模型"><a href="#翻译Python-language-reference-1-—3-数据模型" class="headerlink" title="翻译Python language reference(1)—3.数据模型"></a>翻译Python language reference(1)—3.数据模型</h1><h2 id="3-1-对象，值，和类型"><a href="#3-1-对象，值，和类型" class="headerlink" title="3.1 对象，值，和类型"></a>3.1 对象，值，和类型</h2><p>&emsp;&emsp;对象是python对数据的抽象，python程序中的一切数据均由对象和对象之间的关系来表示（在某种意义上，这与Von Neumann的“存储程序的计算机”模型一致，代码也被表示为对象。）。<br>每一个对象都具有一个标识，一个类型和一个数值。自创建起，对象的id不会改变，你可以把他理解成对象在内存的地址。<code>is</code>运算符比较两个对象的身份标识; <code>id()</code> 函数返回一个代表id的整数。<br>&emsp;&emsp;<strong>CPython实现细节</strong>：对于CPython来说，<code>id(x)</code>返回存储x的内存地址。<br>&emsp;&emsp;一个对象的类型决定了对象所支持的操作，也定义了对象可能的取值。<code>type()</code>函数返回对象的类型（返回值自身也是对象）。如同对象的id，对象的类型也是不能改变的。【1】<br>&emsp;&emsp;某些对象的值可以改变，数值可以改变的对象被称为mutable；创建后取值不可变的对象被称为immutable。（一个引用到可变对象的不可变容器对象的值在后者的值改变时可以被改变，尽管如此，容器依然被认为是不可变的，因为他引用到的对象不能改变，所以，immutability和值不变是两个不完全相同的概念，后者更顽固。）一个对象的可变性由对象的类型决定；例如，数值，字符串，元组是不可变类型，而字典和列表是可变类型。<br>&emsp;&emsp;对象永远不能被明确指定销毁；然而，当他们变得不可访问时会被GC回收。一种实现允许你延迟垃圾回收或者忽略他-这是垃圾回收的实现质量的问题–有一定是确定的，没有对象会在可以被访问的时候被回收。<br>&emsp;&emsp;<strong>CPython实现细节</strong>：CPython currently uses a reference-counting scheme with (optional) delayed detection of cyclically linked garbage（CPython目前使用引用计数的方式对循环引用的垃圾做延迟检测）, which collects most objects as soon as they become unreachable, but is not guaranteed to collect garbage containing circular references.（他会在对象变得不可用时搜集其中的大多数，但是不保证收集包含循环引用的垃圾） See the documentation of the gc module for information on controlling the collection of cyclic garbage. （参考gc模块的文档来获取关于循环垃圾回收控制的实现细节）Other implementations act differently and CPython may change. Do not depend on immediate finalization of objects when they become unreachable (so you should always close files explicitly).<br>&emsp;&emsp;注意到使用追踪或者调试工具可以保持对象生存，同时注意通过<code>try...except</code>语句捕获异常可以达到同样的效果。<br>&emsp;&emsp;一些对象包含了对外部资源的引用，比如打开文件或窗体。很明显这些资源在垃圾回收时会被释放。考虑到gc并不能保证会发生，这类对象提供了明确的方法来释放外部资源，通常是<code>close()</code>方法，强烈建议程序明确的关闭此类对象，语句<code>try...finally</code>和<code>with</code>为完成这样的工作提供了合适的途径。<br>一些对象包含了对其他对象的引用；这些对象叫做容器例如元组，列表和字典。引用仅仅是容器取值的一部分，在大多数情况下，当我们谈及容器的值时，我们指的是取值而不仅是所包含对象的身份标识；然而当我们讨论容器的可变性的时候，指的仅仅是容器包含的对象的身份。因此，如果一个不可变容器包含了对可变对象的引用，他的取值会随着可变对象的改变而改变。<br>&emsp;&emsp;类型影响着对象行为的方方面面。在某种意义上，甚至于id的重要性也受到影响：对于不可变类型，计算新值的操作会返回对相同类型和数值的已存在对象的引用，然而对可变对象这是不允许的。E.g.,在<code>a=1;b=1</code>之后，a和b是否引用到相同对象（数值1）引来于实现机制，而在执行<code>c=[];d=[]</code>之后，c和d确定会引用到两个不同的，独立的，新的空列表。（注意这与<code>c=d=[]</code>的复制操作不同）。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/02/翻译Python文档（1）-数据模型（1）/" data-id="cje9f3akq0002dkv7gf9ztjps" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/02/翻译Python文档（1）-数据模型（1）/" data-id="cje9fcxx700032gv7p9mckv4h" class="article-share-link">Share</a>
       
       
     </footer>
@@ -161,7 +160,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/01/Spigot插件学习-1-使用maven构建项目/" data-id="cje9f3akq0001dkv7u7ls0ow7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/01/Spigot插件学习-1-使用maven构建项目/" data-id="cje9fcxwc00012gv77vvo4zz2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -197,7 +196,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/02/23/Hello/" data-id="cje9f3akq0000dkv7zixeaww7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/02/23/Hello/" data-id="cje9fcxvw00002gv7r4jzfgx8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -247,7 +246,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/02/23/编译spigot/" data-id="cje9f3alc0003dkv7hadfqeeq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/02/23/编译spigot/" data-id="cje9fcxwc00022gv7o83iaan8" class="article-share-link">Share</a>
       
       
     </footer>
