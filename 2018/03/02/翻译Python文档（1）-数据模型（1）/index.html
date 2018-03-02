@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>翻译Python文档（1）--数据模型（1） | caoxm&#39;s world</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="#翻译Python language reference(1)—3.数据模型 ##3.1 对象，值，和类型&amp;emsp;&amp;emsp;对象是python对数据的抽象，python程序中的一切数据均由对象和对象之间的关系来表示（在某种意义上，这与Von Neumann的“存储程序的计算机”模型一致，代码也被表示为对象。）。每一个对象都具有一个标识，一个类型和一个数值。自创建起，对象的id不会改变，你可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="翻译Python文档（1）--数据模型（1）">
+<meta property="og:url" content="http://yoursite.com/2018/03/02/翻译Python文档（1）-数据模型（1）/index.html">
+<meta property="og:site_name" content="caoxm&#39;s world">
+<meta property="og:description" content="#翻译Python language reference(1)—3.数据模型 ##3.1 对象，值，和类型&amp;emsp;&amp;emsp;对象是python对数据的抽象，python程序中的一切数据均由对象和对象之间的关系来表示（在某种意义上，这与Von Neumann的“存储程序的计算机”模型一致，代码也被表示为对象。）。每一个对象都具有一个标识，一个类型和一个数值。自创建起，对象的id不会改变，你可以">
+<meta property="og:updated_time" content="2018-03-02T04:10:46.355Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="翻译Python文档（1）--数据模型（1）">
+<meta name="twitter:description" content="#翻译Python language reference(1)—3.数据模型 ##3.1 对象，值，和类型&amp;emsp;&amp;emsp;对象是python对数据的抽象，python程序中的一切数据均由对象和对象之间的关系来表示（在某种意义上，这与Von Neumann的“存储程序的计算机”模型一致，代码也被表示为对象。）。每一个对象都具有一个标识，一个类型和一个数值。自创建起，对象的id不会改变，你可以">
+  
+    <link rel="alternate" href="/atom.xml" title="caoxm&#39;s world" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">caoxm&#39;s world</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-翻译Python文档（1）-数据模型（1）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/02/翻译Python文档（1）-数据模型（1）/" class="article-date">
+  <time datetime="2018-03-02T04:02:33.000Z" itemprop="datePublished">2018-03-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      翻译Python文档（1）--数据模型（1）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#翻译Python language reference(1)—3.数据模型</p>
+<p>##3.1 对象，值，和类型<br>&emsp;&emsp;对象是python对数据的抽象，python程序中的一切数据均由对象和对象之间的关系来表示（在某种意义上，这与Von Neumann的“存储程序的计算机”模型一致，代码也被表示为对象。）。<br>每一个对象都具有一个标识，一个类型和一个数值。自创建起，对象的id不会改变，你可以把他理解成对象在内存的地址。<code>is</code>运算符比较两个对象的身份标识; <code>id()</code> 函数返回一个代表id的整数。<br>&emsp;&emsp;<strong>CPython实现细节</strong>：对于CPython来说，<code>id(x)</code>返回存储x的内存地址。<br>&emsp;&emsp;一个对象的类型决定了对象所支持的操作，也定义了对象可能的取值。<code>type()</code>函数返回对象的类型（返回值自身也是对象）。如同对象的id，对象的类型也是不能改变的。【1】<br>&emsp;&emsp;某些对象的值可以改变，数值可以改变的对象被称为mutable；创建后取值不可变的对象被称为immutable。（一个引用到可变对象的不可变容器对象的值在后者的值改变时可以被改变，尽管如此，容器依然被认为是不可变的，因为他引用到的对象不能改变，所以，immutability和值不变是两个不完全相同的概念，后者更顽固。）一个对象的可变性由对象的类型决定；例如，数值，字符串，元组是不可变类型，而字典和列表是可变类型。<br>&emsp;&emsp;对象永远不能被明确指定销毁；然而，当他们变得不可访问时会被GC回收。一种实现允许你延迟垃圾回收或者忽略他-这是垃圾回收的实现质量的问题–有一定是确定的，没有对象会在可以被访问的时候被回收。<br>&emsp;&emsp;<strong>CPython实现细节</strong>：CPython currently uses a reference-counting scheme with (optional) delayed detection of cyclically linked garbage（CPython目前使用引用计数的方式对循环引用的垃圾做延迟检测）, which collects most objects as soon as they become unreachable, but is not guaranteed to collect garbage containing circular references.（他会在对象变得不可用时搜集其中的大多数，但是不保证收集包含循环引用的垃圾） See the documentation of the gc module for information on controlling the collection of cyclic garbage. （参考gc模块的文档来获取关于循环垃圾回收控制的实现细节）Other implementations act differently and CPython may change. Do not depend on immediate finalization of objects when they become unreachable (so you should always close files explicitly).<br>&emsp;&emsp;注意到使用追踪或者调试工具可以保持对象生存，同时注意通过<code>try...except</code>语句捕获异常可以达到同样的效果。<br>&emsp;&emsp;一些对象包含了对外部资源的引用，比如打开文件或窗体。很明显这些资源在垃圾回收时会被释放。考虑到gc并不能保证会发生，这类对象提供了明确的方法来释放外部资源，通常是<code>close()</code>方法，强烈建议程序明确的关闭此类对象，语句<code>try...finally</code>和<code>with</code>为完成这样的工作提供了合适的途径。<br>一些对象包含了对其他对象的引用；这些对象叫做容器例如元组，列表和字典。引用仅仅是容器取值的一部分，在大多数情况下，当我们谈及容器的值时，我们指的是取值而不仅是所包含对象的身份标识；然而当我们讨论容器的可变性的时候，指的仅仅是容器包含的对象的身份。因此，如果一个不可变容器包含了对可变对象的引用，他的取值会随着可变对象的改变而改变。<br>&emsp;&emsp;类型影响着对象行为的方方面面。在某种意义上，甚至于id的重要性也受到影响：对于不可变类型，计算新值的操作会返回对相同类型和数值的已存在对象的引用，然而对可变对象这是不允许的。E.g.,在<code>a=1;b=1</code>之后，a和b是否引用到相同对象（数值1）引来于实现机制，而在执行<code>c=[];d=[]</code>之后，c和d确定会引用到两个不同的，独立的，新的空列表。（注意这与<code>c=d=[]</code>的复制操作不同）。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/02/翻译Python文档（1）-数据模型（1）/" data-id="cje9f3akq0002dkv7gf9ztjps" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/03/01/Spigot插件学习-1-使用maven构建项目/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Spigot插件学习(1)---使用maven构建项目</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/02/翻译Python文档（1）-数据模型（1）/">翻译Python文档（1）--数据模型（1）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/01/Spigot插件学习-1-使用maven构建项目/">Spigot插件学习(1)---使用maven构建项目</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/23/Hello/">用Hexo搭建博客</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/23/编译spigot/">编译Spigot Server</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 caoxm<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
