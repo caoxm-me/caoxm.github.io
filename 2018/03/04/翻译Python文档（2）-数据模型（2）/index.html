@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>翻译Python文档（2）--数据模型（2） | caoxm&#39;s world</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="3.2. 标准类型层次&amp;emsp;&amp;emsp;下面是内置到Python中的类型的列表。扩展模块（用C,Java,或者是其他语言编写，依赖于实现）可以定义额外的类型。以后的Python版本或许会添加新的类型（例如，合理的数值，有效存储的整数数组，等等），尽管这些类型总是会通过标准库额外提供。下面的某些类型描述中包含了列出‘特殊属性’的段落。这是些提供了对实现进行访问的属性，而非用于通常用途。他们的定">
+<meta property="og:type" content="article">
+<meta property="og:title" content="翻译Python文档（2）--数据模型（2）">
+<meta property="og:url" content="http://yoursite.com/2018/03/04/翻译Python文档（2）-数据模型（2）/index.html">
+<meta property="og:site_name" content="caoxm&#39;s world">
+<meta property="og:description" content="3.2. 标准类型层次&amp;emsp;&amp;emsp;下面是内置到Python中的类型的列表。扩展模块（用C,Java,或者是其他语言编写，依赖于实现）可以定义额外的类型。以后的Python版本或许会添加新的类型（例如，合理的数值，有效存储的整数数组，等等），尽管这些类型总是会通过标准库额外提供。下面的某些类型描述中包含了列出‘特殊属性’的段落。这是些提供了对实现进行访问的属性，而非用于通常用途。他们的定">
+<meta property="og:updated_time" content="2018-03-05T06:00:36.534Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="翻译Python文档（2）--数据模型（2）">
+<meta name="twitter:description" content="3.2. 标准类型层次&amp;emsp;&amp;emsp;下面是内置到Python中的类型的列表。扩展模块（用C,Java,或者是其他语言编写，依赖于实现）可以定义额外的类型。以后的Python版本或许会添加新的类型（例如，合理的数值，有效存储的整数数组，等等），尽管这些类型总是会通过标准库额外提供。下面的某些类型描述中包含了列出‘特殊属性’的段落。这是些提供了对实现进行访问的属性，而非用于通常用途。他们的定">
+  
+    <link rel="alternate" href="/atom.xml" title="caoxm&#39;s world" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">caoxm&#39;s world</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-翻译Python文档（2）-数据模型（2）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/04/翻译Python文档（2）-数据模型（2）/" class="article-date">
+  <time datetime="2018-03-04T15:04:40.000Z" itemprop="datePublished">2018-03-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      翻译Python文档（2）--数据模型（2）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="3-2-标准类型层次"><a href="#3-2-标准类型层次" class="headerlink" title="3.2. 标准类型层次"></a>3.2. 标准类型层次</h2><p>&emsp;&emsp;下面是内置到Python中的类型的列表。扩展模块（用C,Java,或者是其他语言编写，依赖于实现）可以定义额外的类型。以后的Python版本或许会添加新的类型（例如，合理的数值，有效存储的整数数组，等等），尽管这些类型总是会通过标准库额外提供。<br>下面的某些类型描述中包含了列出‘特殊属性’的段落。这是些提供了对实现进行访问的属性，而非用于通常用途。他们的定义在未来可能会改变。</p>
+<hr>
+<p><strong>None</strong>:</p>
+<p>&emsp;&emsp;该类型具有单一值。对应该值仅有一个对象。这个对象可以通过内置名字<code>None</code>来访问。在很多情况中，这被用来表达值不存在。比如，被没有指定返回值的函数返回。它的逻辑值是False。<br><strong>NotImplemented</strong>:</p>
+<p>&emsp;&emsp;该类型具有单一值。对应该值仅有一个对象。这个对象可以通过内置名字<code>NotImplemented</code>来访问。数值方法和富比较方法应当在未能对提供的操作数执行操作返回这个值。该逻辑值是True。(注：方法对不能正常操作的参数返回NotImplemented，已提示解释器寻找其他的方法来完成该操作，而不是抛出异常。NotImplemented &emsp;&emsp;对象向运行时环境发出一个信号，告诉运行环境如果当前操作失败，它应该再检查一下其他可行方法。例如在 a == b 表达式，如果 a.__eq__(b) 返回 NotImplemented，那么 Python 会尝试 b.__eq__(a)。如果调用 b 的 __eq__() 方法可以返回 True 或者 False，那么该表达式就成功了。如果 b.__eq__(a) 也不能得出结果，那么 Python 会继续尝试其他方法，例如使用 != 来比较。）<br><strong>Ellipsis</strong>:</p>
+<p>&emsp;&emsp;该类型具有单一值。对应该值仅有一个对象。该对象通过字面值<code>...</code>或者内置名字<code>Ellipsis</code>来访问。它的逻辑值时True。（注：Ellipsis主要用于省略，可以用来替代pass语句在函数中占位，也经常出现在输出结果中表达省略或者优化显示效果？？）</p>
+<p><strong>numbers.Number</strong>:<br>&emsp;&emsp;数值类型的对象可以由数值字面值来创建，也可以作为算数运算符或者是内置算数函数的结果返回。数值对象是不可变的；他们的值一旦被创建就不能再改变。Python的数值类型与数学中的数值是很相似的，但是尽管如此也同样受限于数值在计算机中的表示方法。<br>&emsp;&emsp;Python区分整数，浮点数和复数类型:</p>
+<ul>
+<li><strong>numbers.Integral</strong><br>&emsp;&emsp;这些对象代表数学中整数集中的元素（正数或者负数）。<br>&emsp;&emsp;整数类型中又分为更具体的两种类型:<ul>
+<li>Integers(int)<br>&emsp;&emsp;他们代表无限范围内的数值，仅仅受到内存（虚拟的）的限制。为了移位和掩码操作，需要采用二进制表示，负数被通过二进制补码的变体表示，这种表示的符号位是向左延伸的无限长字符串。</li>
+<li>Booleans (bool)<br>&emsp;&emsp;这些对象代表了逻辑值False和True。这两种对象是仅有的布尔型对象。Boolean类型是整数类型的子类型，布尔数值表现起来像0和1，特殊之处在于当把布尔类型转换为字符串的时候，会返回”False”和”True”。<br>&emsp;&emsp;整数类型的规定意在给包括负数在内的整数做移位和掩码操作时给出最具有意义的解释。</li>
+</ul>
+</li>
+<li><strong>numbers.Real(float)</strong><br>&emsp;&emsp;表示机器层面的双精度浮点数。你在底层机器架构（以及C和Java实现）对范围和溢出处理方式面前束手无策。Python不支持单精度浮点数类型；在使用Python对象面前，因为处理器和内存使用这样的原因使用单精度显得爱笑，所以没有理由在同一种语言中实现两种浮点数类型。</li>
+<li><strong>numbers.Complex(complex)</strong>:<br>&emsp;&emsp;通过机器层面的一对双进度浮点数表示负数。复数z的实部和虚部可以通过只读属性z.real和z.imag来访问。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/04/翻译Python文档（2）-数据模型（2）/" data-id="cjedthc8d000470v7xrfeeafx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/03/04/Anaconda-环境中安装openCV/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Anaconda 环境中安装openCV</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/04/翻译Python文档（2）-数据模型（2）/">翻译Python文档（2）--数据模型（2）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/04/Anaconda-环境中安装openCV/">Anaconda 环境中安装openCV</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/02/翻译Python文档（1）-数据模型（1）/">翻译Python文档（1）--数据模型（1）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/01/Spigot插件学习-1-使用maven构建项目/">Spigot插件学习(1)---使用maven构建项目</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/23/Hello/">用Hexo搭建博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 caoxm<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
