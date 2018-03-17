@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>编译Spigot Server | caoxm&#39;s world</title>
+  <title>Python虚拟环境 | caoxm&#39;s world</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一.编译方法 1. 下载BuildTools 官网链接：[https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar][1]。 如果使用命令行，则可使用下面两种办法 或者：  1curl -o BuildTools.jar -k https://hub.spig">
+  <meta name="description" content="用virtualenv创建Python虚拟环境虚拟环境的意义是 1.安装virtualenv12# 注意pip所属的Python环境，之后利用的virtualenv创建的Python环境与当前版本一致pip install virtualenv 2.创建虚拟环境123mkdir envName  #创建保存虚拟环境的文件夹cd envNamevirtualenv flask_env  # 在刚才创">
 <meta property="og:type" content="article">
-<meta property="og:title" content="编译Spigot Server">
-<meta property="og:url" content="http://yoursite.com/2018/02/23/编译spigot/index.html">
+<meta property="og:title" content="Python虚拟环境">
+<meta property="og:url" content="http://yoursite.com/2018/03/17/Python虚拟环境/index.html">
 <meta property="og:site_name" content="caoxm&#39;s world">
-<meta property="og:description" content="一.编译方法 1. 下载BuildTools 官网链接：[https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar][1]。 如果使用命令行，则可使用下面两种办法 或者：  1curl -o BuildTools.jar -k https://hub.spig">
-<meta property="og:updated_time" content="2018-02-27T16:00:01.829Z">
+<meta property="og:description" content="用virtualenv创建Python虚拟环境虚拟环境的意义是 1.安装virtualenv12# 注意pip所属的Python环境，之后利用的virtualenv创建的Python环境与当前版本一致pip install virtualenv 2.创建虚拟环境123mkdir envName  #创建保存虚拟环境的文件夹cd envNamevirtualenv flask_env  # 在刚才创">
+<meta property="og:updated_time" content="2018-03-17T03:05:45.781Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="编译Spigot Server">
-<meta name="twitter:description" content="一.编译方法 1. 下载BuildTools 官网链接：[https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar][1]。 如果使用命令行，则可使用下面两种办法 或者：  1curl -o BuildTools.jar -k https://hub.spig">
+<meta name="twitter:title" content="Python虚拟环境">
+<meta name="twitter:description" content="用virtualenv创建Python虚拟环境虚拟环境的意义是 1.安装virtualenv12# 注意pip所属的Python环境，之后利用的virtualenv创建的Python环境与当前版本一致pip install virtualenv 2.创建虚拟环境123mkdir envName  #创建保存虚拟环境的文件夹cd envNamevirtualenv flask_env  # 在刚才创">
   
     <link rel="alternate" href="/atom.xml" title="caoxm&#39;s world" type="application/atom+xml">
   
@@ -63,10 +63,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-编译spigot" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Python虚拟环境" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/02/23/编译spigot/" class="article-date">
-  <time datetime="2018-02-23T06:10:06.000Z" itemprop="datePublished">2018-02-23</time>
+    <a href="/2018/03/17/Python虚拟环境/" class="article-date">
+  <time datetime="2018-03-17T03:05:17.000Z" itemprop="datePublished">2018-03-17</time>
 </a>
     
   </div>
@@ -77,7 +77,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      编译Spigot Server
+      Python虚拟环境
     </h1>
   
 
@@ -85,25 +85,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="一-编译方法"><a href="#一-编译方法" class="headerlink" title="一.编译方法"></a>一.编译方法</h1><p> <strong>1. 下载BuildTools</strong></p>
-<pre><code>官网链接：[https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar][1]。
-如果使用命令行，则可使用下面两种办法
-或者：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o BuildTools.jar -k https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar</span><br></pre></td></tr></table></figure>
-
-或者：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar</span><br></pre></td></tr></table></figure>
-</code></pre><p><strong>2. 使用BuildTools编译spigot</strong></p>
-<pre><code>在BuildTools.jar所在目录输入命令：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar BuildTools.jar --rev 1.12.2</span><br></pre></td></tr></table></figure>
-</code></pre><h1 id="二-基本流程"><a href="#二-基本流程" class="headerlink" title="二.基本流程"></a>二.基本流程</h1><ol>
-<li>依次从相应git仓库clone文件到本地，文件存放在当前目录Bukkit、raftBukkit、Spigot、Builddata目录下</li>
-<li>安装apache-maven到当前目录下,使用maven构建项目</li>
-<li>编译Spigot server</li>
-<li>编译完成后，会在当前路径下发现craftbukkit-1.10.jar 和 spigot-1.10.jar</li>
-</ol>
+        <h1 id="用virtualenv创建Python虚拟环境"><a href="#用virtualenv创建Python虚拟环境" class="headerlink" title="用virtualenv创建Python虚拟环境"></a>用virtualenv创建Python虚拟环境</h1><p>虚拟环境的意义是</p>
+<h2 id="1-安装virtualenv"><a href="#1-安装virtualenv" class="headerlink" title="1.安装virtualenv"></a>1.安装virtualenv</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 注意pip所属的Python环境，之后利用的virtualenv创建的Python环境与当前版本一致</span><br><span class="line">pip install virtualenv</span><br></pre></td></tr></table></figure>
+<h2 id="2-创建虚拟环境"><a href="#2-创建虚拟环境" class="headerlink" title="2.创建虚拟环境"></a>2.创建虚拟环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir envName  #创建保存虚拟环境的文件夹</span><br><span class="line">cd envName</span><br><span class="line">virtualenv flask_env  # 在刚才创建的文件夹中创建虚拟环境（该过程要联网）</span><br></pre></td></tr></table></figure>
+<h2 id="3-使用虚拟环境"><a href="#3-使用虚拟环境" class="headerlink" title="3.使用虚拟环境"></a>3.使用虚拟环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd .\envName\flask_env</span><br><span class="line">activate</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/02/23/编译spigot/" data-id="cjeusiuyr0006jgv7r8vq0n35" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/17/Python虚拟环境/" data-id="cjeusiuwn0002jgv70igfd67m" class="article-share-link">Share</a>
       
       
     </footer>
@@ -112,15 +102,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/02/23/Hello/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          用Hexo搭建博客
-        
-      </div>
-    </a>
   
+    <a href="/2018/03/04/翻译Python文档（2）-数据模型（2）/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">翻译Python文档（2）--数据模型（2）</div>
+    </a>
   
 </nav>
 
