@@ -1,1 +1,674 @@
-null
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="3.2. 标准类型层次&amp;emsp;&amp;emsp;下面是内置到Python中的类型的列表。扩展模块（用C,Java,或者是其他语言编写，依赖于实现）可以定义额外的类型。以后的Python版本或许会添加新的类型（例如，合理的数值，有效存储的整数数组，等等），尽管这些类型总是会通过标准库额外提供。下面的某些类型描述中包含了列出‘特殊属性’的段落。这是些提供了对实现进行访问的属性，而非用于通常用途。他们的定">
+<meta property="og:type" content="article">
+<meta property="og:title" content="翻译Python文档（2）--数据模型（2）">
+<meta property="og:url" content="http://yoursite.com/2018/03/04/翻译Python文档（2）-数据模型（2）/index.html">
+<meta property="og:site_name" content="漫无目的技术研究社">
+<meta property="og:description" content="3.2. 标准类型层次&amp;emsp;&amp;emsp;下面是内置到Python中的类型的列表。扩展模块（用C,Java,或者是其他语言编写，依赖于实现）可以定义额外的类型。以后的Python版本或许会添加新的类型（例如，合理的数值，有效存储的整数数组，等等），尽管这些类型总是会通过标准库额外提供。下面的某些类型描述中包含了列出‘特殊属性’的段落。这是些提供了对实现进行访问的属性，而非用于通常用途。他们的定">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-05T06:00:36.534Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="翻译Python文档（2）--数据模型（2）">
+<meta name="twitter:description" content="3.2. 标准类型层次&amp;emsp;&amp;emsp;下面是内置到Python中的类型的列表。扩展模块（用C,Java,或者是其他语言编写，依赖于实现）可以定义额外的类型。以后的Python版本或许会添加新的类型（例如，合理的数值，有效存储的整数数组，等等），尽管这些类型总是会通过标准库额外提供。下面的某些类型描述中包含了列出‘特殊属性’的段落。这是些提供了对实现进行访问的属性，而非用于通常用途。他们的定">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/04/翻译Python文档（2）-数据模型（2）/"/>
+
+
+
+
+
+  <title>翻译Python文档（2）--数据模型（2） | 漫无目的技术研究社</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">漫无目的技术研究社</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Accueil
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/04/翻译Python文档（2）-数据模型（2）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="caoxm">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="漫无目的技术研究社">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">翻译Python文档（2）--数据模型（2）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posté le</span>
+              
+              <time title="Post aangemaakt" itemprop="dateCreated datePublished" datetime="2018-03-04T23:04:40+08:00">
+                2018-03-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="3-2-标准类型层次"><a href="#3-2-标准类型层次" class="headerlink" title="3.2. 标准类型层次"></a>3.2. 标准类型层次</h2><p>&emsp;&emsp;下面是内置到Python中的类型的列表。扩展模块（用C,Java,或者是其他语言编写，依赖于实现）可以定义额外的类型。以后的Python版本或许会添加新的类型（例如，合理的数值，有效存储的整数数组，等等），尽管这些类型总是会通过标准库额外提供。<br>下面的某些类型描述中包含了列出‘特殊属性’的段落。这是些提供了对实现进行访问的属性，而非用于通常用途。他们的定义在未来可能会改变。</p>
+<hr>
+<p><strong>None</strong>:</p>
+<p>&emsp;&emsp;该类型具有单一值。对应该值仅有一个对象。这个对象可以通过内置名字<code>None</code>来访问。在很多情况中，这被用来表达值不存在。比如，被没有指定返回值的函数返回。它的逻辑值是False。<br><strong>NotImplemented</strong>:</p>
+<p>&emsp;&emsp;该类型具有单一值。对应该值仅有一个对象。这个对象可以通过内置名字<code>NotImplemented</code>来访问。数值方法和富比较方法应当在未能对提供的操作数执行操作返回这个值。该逻辑值是True。(注：方法对不能正常操作的参数返回NotImplemented，已提示解释器寻找其他的方法来完成该操作，而不是抛出异常。NotImplemented &emsp;&emsp;对象向运行时环境发出一个信号，告诉运行环境如果当前操作失败，它应该再检查一下其他可行方法。例如在 a == b 表达式，如果 a.__eq__(b) 返回 NotImplemented，那么 Python 会尝试 b.__eq__(a)。如果调用 b 的 __eq__() 方法可以返回 True 或者 False，那么该表达式就成功了。如果 b.__eq__(a) 也不能得出结果，那么 Python 会继续尝试其他方法，例如使用 != 来比较。）<br><strong>Ellipsis</strong>:</p>
+<p>&emsp;&emsp;该类型具有单一值。对应该值仅有一个对象。该对象通过字面值<code>...</code>或者内置名字<code>Ellipsis</code>来访问。它的逻辑值时True。（注：Ellipsis主要用于省略，可以用来替代pass语句在函数中占位，也经常出现在输出结果中表达省略或者优化显示效果？？）</p>
+<p><strong>numbers.Number</strong>:<br>&emsp;&emsp;数值类型的对象可以由数值字面值来创建，也可以作为算数运算符或者是内置算数函数的结果返回。数值对象是不可变的；他们的值一旦被创建就不能再改变。Python的数值类型与数学中的数值是很相似的，但是尽管如此也同样受限于数值在计算机中的表示方法。<br>&emsp;&emsp;Python区分整数，浮点数和复数类型:</p>
+<ul>
+<li><strong>numbers.Integral</strong><br>&emsp;&emsp;这些对象代表数学中整数集中的元素（正数或者负数）。<br>&emsp;&emsp;整数类型中又分为更具体的两种类型:<ul>
+<li>Integers(int)<br>&emsp;&emsp;他们代表无限范围内的数值，仅仅受到内存（虚拟的）的限制。为了移位和掩码操作，需要采用二进制表示，负数被通过二进制补码的变体表示，这种表示的符号位是向左延伸的无限长字符串。</li>
+<li>Booleans (bool)<br>&emsp;&emsp;这些对象代表了逻辑值False和True。这两种对象是仅有的布尔型对象。Boolean类型是整数类型的子类型，布尔数值表现起来像0和1，特殊之处在于当把布尔类型转换为字符串的时候，会返回”False”和”True”。<br>&emsp;&emsp;整数类型的规定意在给包括负数在内的整数做移位和掩码操作时给出最具有意义的解释。</li>
+</ul>
+</li>
+<li><strong>numbers.Real(float)</strong><br>&emsp;&emsp;表示机器层面的双精度浮点数。你在底层机器架构（以及C和Java实现）对范围和溢出处理方式面前束手无策。Python不支持单精度浮点数类型；在使用Python对象面前，因为处理器和内存使用这样的原因使用单精度显得爱笑，所以没有理由在同一种语言中实现两种浮点数类型。</li>
+<li><strong>numbers.Complex(complex)</strong>:<br>&emsp;&emsp;通过机器层面的一对双进度浮点数表示负数。复数z的实部和虚部可以通过只读属性z.real和z.imag来访问。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/04/Anaconda-环境中安装openCV/" rel="next" title="Anaconda 环境中安装openCV">
+                <i class="fa fa-chevron-left"></i> Anaconda 环境中安装openCV
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/17/Python虚拟环境/" rel="prev" title="Python虚拟环境">
+                Python虚拟环境 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table Des Matières
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Ensemble
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">caoxm</p>
+              <p class="site-description motion-element" itemprop="description">技术学习</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">articles</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-标准类型层次"><span class="nav-number">1.</span> <span class="nav-text">3.2. 标准类型层次</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">caoxm</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Thème &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
