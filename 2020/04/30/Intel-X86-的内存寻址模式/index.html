@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="Python3.x自带pip,直接按下面的命令安装即可。 多Python版本共存时注意确认使用的哪个环境中的Python！ 12pip install opencv-pythonpip install opencv-contrib-python  Anaconda安装环境中默认没有安装Python3.dll，这会导致cv2的导入失败，要解决该问题，去官网下载Python相应版本的zip包，自行拷">
+<meta name="description" content="1. 直接寻址（Direct memory addressing mode）通过立即数直接指定偏移地址，段地址隐含在指令中，当然也可以人为指定段寄存器。 12MOV EAX, [0X8FFCBC]MOV EAX, DWORD PTR DS:[0X8FFCBC] 2. 寄存器间接寻址（Register based indirect addressing mode）偏移地址通过寄存器给出，默认的段寄存">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Anaconda 环境中安装openCV">
-<meta property="og:url" content="http://yoursite.com/2018/03/04/Anaconda-环境中安装openCV/index.html">
+<meta property="og:title" content="Intel X86 的内存寻址模式">
+<meta property="og:url" content="http://yoursite.com/2020/04/30/Intel-X86-的内存寻址模式/index.html">
 <meta property="og:site_name" content="漫无目的技术研究社">
-<meta property="og:description" content="Python3.x自带pip,直接按下面的命令安装即可。 多Python版本共存时注意确认使用的哪个环境中的Python！ 12pip install opencv-pythonpip install opencv-contrib-python  Anaconda安装环境中默认没有安装Python3.dll，这会导致cv2的导入失败，要解决该问题，去官网下载Python相应版本的zip包，自行拷">
+<meta property="og:description" content="1. 直接寻址（Direct memory addressing mode）通过立即数直接指定偏移地址，段地址隐含在指令中，当然也可以人为指定段寄存器。 12MOV EAX, [0X8FFCBC]MOV EAX, DWORD PTR DS:[0X8FFCBC] 2. 寄存器间接寻址（Register based indirect addressing mode）偏移地址通过寄存器给出，默认的段寄存">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-28T15:59:40.916Z">
+<meta property="og:updated_time" content="2020-04-30T04:48:58.806Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Anaconda 环境中安装openCV">
-<meta name="twitter:description" content="Python3.x自带pip,直接按下面的命令安装即可。 多Python版本共存时注意确认使用的哪个环境中的Python！ 12pip install opencv-pythonpip install opencv-contrib-python  Anaconda安装环境中默认没有安装Python3.dll，这会导致cv2的导入失败，要解决该问题，去官网下载Python相应版本的zip包，自行拷">
+<meta name="twitter:title" content="Intel X86 的内存寻址模式">
+<meta name="twitter:description" content="1. 直接寻址（Direct memory addressing mode）通过立即数直接指定偏移地址，段地址隐含在指令中，当然也可以人为指定段寄存器。 12MOV EAX, [0X8FFCBC]MOV EAX, DWORD PTR DS:[0X8FFCBC] 2. 寄存器间接寻址（Register based indirect addressing mode）偏移地址通过寄存器给出，默认的段寄存">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/03/04/Anaconda-环境中安装openCV/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/04/30/Intel-X86-的内存寻址模式/"/>
 
 
 
 
 
-  <title>Anaconda 环境中安装openCV | 漫无目的技术研究社</title>
+  <title>Intel X86 的内存寻址模式 | 漫无目的技术研究社</title>
   
 
 
@@ -234,7 +234,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/04/Anaconda-环境中安装openCV/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/30/Intel-X86-的内存寻址模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="caoxm">
@@ -251,7 +251,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Anaconda 环境中安装openCV</h1>
+          <h1 class="post-title" itemprop="name headline">Intel X86 的内存寻址模式</h1>
         
 
         <div class="post-meta">
@@ -263,8 +263,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-04T10:25:52+08:00">
-                2018-03-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-30T12:47:53+08:00">
+                2020-04-30
               </time>
             
 
@@ -286,8 +286,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
+                  <a href="/categories/Assembly/" itemprop="url" rel="index">
+                    <span itemprop="name">Assembly</span>
                   </a>
                 </span>
 
@@ -323,15 +323,17 @@
       
 
       
-        <ul>
-<li>Python3.x自带pip,直接按下面的命令安装即可。</li>
-<li><p>多Python版本共存时注意确认使用的哪个环境中的Python！</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install opencv-python</span><br><span class="line">pip install opencv-contrib-python</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Anaconda安装环境中默认没有安装Python3.dll，这会导致cv2的导入失败，要解决该问题，去官网下载Python相应版本的zip包，自行拷贝其中的Python3.dll到Anaconda根目录即可。</p>
-</li>
-<li>验证<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># python</span><br><span class="line">&gt;&gt;&gt;import cv2 as cv</span><br></pre></td></tr></table></figure></li>
-</ul>
+        <h4 id="1-直接寻址（Direct-memory-addressing-mode）"><a href="#1-直接寻址（Direct-memory-addressing-mode）" class="headerlink" title="1. 直接寻址（Direct memory addressing mode）"></a>1. 直接寻址（<strong>Direct memory addressing mode</strong>）</h4><p>通过立即数直接指定偏移地址，段地址隐含在指令中，当然也可以人为指定段寄存器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MOV EAX, [0X8FFCBC]</span><br><span class="line">MOV EAX, DWORD PTR DS:[0X8FFCBC]</span><br></pre></td></tr></table></figure>
+<h4 id="2-寄存器间接寻址（Register-based-indirect-addressing-mode）"><a href="#2-寄存器间接寻址（Register-based-indirect-addressing-mode）" class="headerlink" title="2. 寄存器间接寻址（Register based indirect addressing mode）"></a>2. 寄存器间接寻址（Register based indirect addressing mode）</h4><p>偏移地址通过寄存器给出，默认的段寄存器跟使用的基址寄存器有关，如果用了ESP，EBP则默认堆栈段SS，否则默认为数据段DS，这些都可以自行更改。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MOV EAX, [EBX]</span><br><span class="line">MOV EAX, DWORD PTR DS:[EBX]</span><br><span class="line">MOV EAX, DWORD PTR SS:[ESP]</span><br><span class="line">MOV EAX, DWORD PTR DS:[ESP]</span><br></pre></td></tr></table></figure>
+<h4 id="3-寄存器相对寻址（Register-relative-addressing-mode）"><a href="#3-寄存器相对寻址（Register-relative-addressing-mode）" class="headerlink" title="3. 寄存器相对寻址（Register relative addressing mode）"></a>3. 寄存器相对寻址（<strong>Register relative addressing mode</strong>）</h4><p>相对的意思以寄存器为基址，通过立即数指定相对基址的偏移量，二者共同构成相对段地址的偏移地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MOV EAX, [EBX+0X00101010]</span><br><span class="line">MOV EAX, DWORD PTR DS:[EBX+0X00101010]</span><br><span class="line">MOV EAX, DWORD PTR ES:[EDX+0X00101010]</span><br><span class="line">MOV EAX, DWORD PTR SS:[EAX+0X10123478]</span><br><span class="line">MOV EAX, DWORD PTR FS:[ESI+0X1FF010]</span><br></pre></td></tr></table></figure>
+<h4 id="4-基址-变址寻址（Base-indexed-addressing-mode）"><a href="#4-基址-变址寻址（Base-indexed-addressing-mode）" class="headerlink" title="4. 基址-变址寻址（Base indexed addressing mode）"></a>4. <strong>基址-变址寻址（Base indexed addressing mode）</strong></h4><p>通过一个<strong>基址寄存器</strong>加一个<strong>索引寄存器（也叫变址寄存器）的（1, 2, 4, 8）倍</strong>来构成相对段地址的偏移地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MOV EAX, [EBX+ESI]</span><br><span class="line">MOV EAX, DWORD PTR DS:[EBX+ESI]</span><br><span class="line">MOV EAX, [EBX+ESI*8]</span><br><span class="line">MOV EAX, [EBX*4+EAX]</span><br><span class="line">MOV EAX, [ESI*2+EDI]</span><br></pre></td></tr></table></figure>
+<h4 id="5-相对基址-变址寻址（Relative-based-indexed-addressing-mode）"><a href="#5-相对基址-变址寻址（Relative-based-indexed-addressing-mode）" class="headerlink" title="5. 相对基址-变址寻址（Relative based indexed addressing mode）"></a>5. 相对基址-变址寻址（<strong>Relative based indexed addressing mode</strong>）</h4><p>组合上面所说的相对寻址和索引寻址，即偏移地址由基址寄存器，变址寄存器（1, 2, 4, 8）倍，位移立即数相加而成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MOV EAX, [EBX+ESI+0X008CEECF]</span><br><span class="line">MOV EAX, DWORD PTR DS:[EBX+ESI+0X008CEECF]</span><br><span class="line">MOV EAX, [EBX+ESI*4+0X008CEECF]</span><br><span class="line">MOV EAX, [EAX*2+ESI+0X8CEEFE]</span><br><span class="line">MOV EAX, [EBP*8+EDI+0X8BACFF]</span><br></pre></td></tr></table></figure>
+<p>因为任何一个通用寄存器都可以拿来做变址寄存器，所以上面哪一个寄存器乘系数是无所谓的，关键是只能有一个寄存器带有系数。</p>
 
       
     </div>
@@ -385,8 +387,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/02/翻译Python文档（1）-数据模型（1）/" rel="next" title="翻译Python文档（1）--数据模型（1）">
-                <i class="fa fa-chevron-left"></i> 翻译Python文档（1）--数据模型（1）
+              <a href="/2018/03/17/Python虚拟环境/" rel="next" title="Python虚拟环境">
+                <i class="fa fa-chevron-left"></i> Python虚拟环境
               </a>
             
           </div>
@@ -394,10 +396,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/04/翻译Python文档（2）-数据模型（2）/" rel="prev" title="翻译Python文档（2）--数据模型（2）">
-                翻译Python文档（2）--数据模型（2） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -449,8 +447,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -512,6 +519,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-直接寻址（Direct-memory-addressing-mode）"><span class="nav-number">1.</span> <span class="nav-text">1. 直接寻址（Direct memory addressing mode）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-寄存器间接寻址（Register-based-indirect-addressing-mode）"><span class="nav-number">2.</span> <span class="nav-text">2. 寄存器间接寻址（Register based indirect addressing mode）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-寄存器相对寻址（Register-relative-addressing-mode）"><span class="nav-number">3.</span> <span class="nav-text">3. 寄存器相对寻址（Register relative addressing mode）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-基址-变址寻址（Base-indexed-addressing-mode）"><span class="nav-number">4.</span> <span class="nav-text">4. 基址-变址寻址（Base indexed addressing mode）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-相对基址-变址寻址（Relative-based-indexed-addressing-mode）"><span class="nav-number">5.</span> <span class="nav-text">5. 相对基址-变址寻址（Relative based indexed addressing mode）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

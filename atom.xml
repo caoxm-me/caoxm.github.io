@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-28T16:00:14.716Z</updated>
+  <updated>2020-04-30T04:48:58.806Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Intel X86 的内存寻址模式</title>
+    <link href="http://yoursite.com/2020/04/30/Intel-X86-%E7%9A%84%E5%86%85%E5%AD%98%E5%AF%BB%E5%9D%80%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2020/04/30/Intel-X86-%E7%9A%84%E5%86%85%E5%AD%98%E5%AF%BB%E5%9D%80%E6%A8%A1%E5%BC%8F/</id>
+    <published>2020-04-30T04:47:53.000Z</published>
+    <updated>2020-04-30T04:48:58.806Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="1-直接寻址（Direct-memory-addressing-mode）"><a href="#1-直接寻址（Direct-memory-addressing-mode）" class="headerlink" title="1. 直接寻址（Direct memory addressing mode）"></a>1. 直接寻址（<strong>Direct memory addressing mode</strong>）</h4><p>通过立即数直接指定偏移地址，段地址隐含在指令中，当然也可以人为指定段寄存器。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MOV EAX, [0X8FFCBC]</span><br><span class="line">MOV EAX, DWORD PTR DS:[0X8FFCBC]</span><br></pre></td></tr></table></figure><h4 id="2-寄存器间接寻址（Register-based-indirect-addressing-mode）"><a href="#2-寄存器间接寻址（Register-based-indirect-addressing-mode）" class="headerlink" title="2. 寄存器间接寻址（Register based indirect addressing mode）"></a>2. 寄存器间接寻址（Register based indirect addressing mode）</h4><p>偏移地址通过寄存器给出，默认的段寄存器跟使用的基址寄存器有关，如果用了ESP，EBP则默认堆栈段SS，否则默认为数据段DS，这些都可以自行更改。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MOV EAX, [EBX]</span><br><span class="line">MOV EAX, DWORD PTR DS:[EBX]</span><br><span class="line">MOV EAX, DWORD PTR SS:[ESP]</span><br><span class="line">MOV EAX, DWORD PTR DS:[ESP]</span><br></pre></td></tr></table></figure><h4 id="3-寄存器相对寻址（Register-relative-addressing-mode）"><a href="#3-寄存器相对寻址（Register-relative-addressing-mode）" class="headerlink" title="3. 寄存器相对寻址（Register relative addressing mode）"></a>3. 寄存器相对寻址（<strong>Register relative addressing mode</strong>）</h4><p>相对的意思以寄存器为基址，通过立即数指定相对基址的偏移量，二者共同构成相对段地址的偏移地址</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MOV EAX, [EBX+0X00101010]</span><br><span class="line">MOV EAX, DWORD PTR DS:[EBX+0X00101010]</span><br><span class="line">MOV EAX, DWORD PTR ES:[EDX+0X00101010]</span><br><span class="line">MOV EAX, DWORD PTR SS:[EAX+0X10123478]</span><br><span class="line">MOV EAX, DWORD PTR FS:[ESI+0X1FF010]</span><br></pre></td></tr></table></figure><h4 id="4-基址-变址寻址（Base-indexed-addressing-mode）"><a href="#4-基址-变址寻址（Base-indexed-addressing-mode）" class="headerlink" title="4. 基址-变址寻址（Base indexed addressing mode）"></a>4. <strong>基址-变址寻址（Base indexed addressing mode）</strong></h4><p>通过一个<strong>基址寄存器</strong>加一个<strong>索引寄存器（也叫变址寄存器）的（1, 2, 4, 8）倍</strong>来构成相对段地址的偏移地址</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MOV EAX, [EBX+ESI]</span><br><span class="line">MOV EAX, DWORD PTR DS:[EBX+ESI]</span><br><span class="line">MOV EAX, [EBX+ESI*8]</span><br><span class="line">MOV EAX, [EBX*4+EAX]</span><br><span class="line">MOV EAX, [ESI*2+EDI]</span><br></pre></td></tr></table></figure><h4 id="5-相对基址-变址寻址（Relative-based-indexed-addressing-mode）"><a href="#5-相对基址-变址寻址（Relative-based-indexed-addressing-mode）" class="headerlink" title="5. 相对基址-变址寻址（Relative based indexed addressing mode）"></a>5. 相对基址-变址寻址（<strong>Relative based indexed addressing mode</strong>）</h4><p>组合上面所说的相对寻址和索引寻址，即偏移地址由基址寄存器，变址寄存器（1, 2, 4, 8）倍，位移立即数相加而成</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MOV EAX, [EBX+ESI+0X008CEECF]</span><br><span class="line">MOV EAX, DWORD PTR DS:[EBX+ESI+0X008CEECF]</span><br><span class="line">MOV EAX, [EBX+ESI*4+0X008CEECF]</span><br><span class="line">MOV EAX, [EAX*2+ESI+0X8CEEFE]</span><br><span class="line">MOV EAX, [EBP*8+EDI+0X8BACFF]</span><br></pre></td></tr></table></figure><p>因为任何一个通用寄存器都可以拿来做变址寄存器，所以上面哪一个寄存器乘系数是无所谓的，关键是只能有一个寄存器带有系数。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;1-直接寻址（Direct-memory-addressing-mode）&quot;&gt;&lt;a href=&quot;#1-直接寻址（Direct-memory-addressing-mode）&quot; class=&quot;headerlink&quot; title=&quot;1. 直接寻址（Direct mem
+      
+    
+    </summary>
+    
+    
+      <category term="Assembly" scheme="http://yoursite.com/categories/Assembly/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Python虚拟环境</title>
