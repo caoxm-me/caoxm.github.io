@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-03T16:45:45.564Z</updated>
+  <updated>2020-05-03T16:51:50.548Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2020/05/04/%E8%BF%9B%E4%BD%8D%E6%A0%87%E5%BF%97%E5%92%8C%E6%BA%A2%E5%87%BA%E6%A0%87%E5%BF%97%E7%9A%84%E5%90%AB%E4%B9%89%E5%92%8C%E7%90%86%E8%A7%A3/"/>
     <id>http://yoursite.com/2020/05/04/%E8%BF%9B%E4%BD%8D%E6%A0%87%E5%BF%97%E5%92%8C%E6%BA%A2%E5%87%BA%E6%A0%87%E5%BF%97%E7%9A%84%E5%90%AB%E4%B9%89%E5%92%8C%E7%90%86%E8%A7%A3/</id>
     <published>2020-05-03T16:42:49.000Z</published>
-    <updated>2020-05-03T16:45:45.564Z</updated>
+    <updated>2020-05-03T16:51:50.548Z</updated>
     
     <content type="html"><![CDATA[<p>这次大概总结一下<strong>进位标志（Carry Flag, CF）</strong>和<strong>溢出标志（Overflow Flag, OF）</strong>的含义和理解方式</p><p><strong>首先明确一点基本认识，处理器本身并不在意也不知道参与算术运算或者逻辑运算的操作数是有符号的还是无符号的。</strong>ALU总是为给定的操作数做二进制运算，并根据结果设置相应的标志位。</p><p>因此，视参与运算的整数的实际情况，CF或者OF会被独立的置位或者清零。他们的含义是有程序设计者赋予的，在进行无符号运算时，我们需要检查CF来确定运算结果是否正确，而在进行有符号运算时，则通过检查OF来判断结果是否发生溢出。</p><a id="more"></a><h3 id="1-Carry-Flag"><a href="#1-Carry-Flag" class="headerlink" title="1. Carry Flag"></a>1. Carry Flag</h3><p><code>CF</code> 会在两种情况下变成1：</p><ol><li><strong>运算结果的最高有效位向更高位进位</strong></li><li><strong>运算结果的最高有效位从更高位借位</strong></li></ol><p>只要在这两种情况以外，<code>CF</code> 总是0。</p><h3 id="2-Overflow-Flag"><a href="#2-Overflow-Flag" class="headerlink" title="2. Overflow Flag"></a>2. Overflow Flag</h3><p><code>OF</code> 会在下面两种情形变为1：</p><ol><li><strong>两个最高有效位均为0的数相加，得到的结果最高有效位为1</strong></li><li><strong>两个最高有效位均为1的数相加，得到的结果最高有效位为0</strong></li></ol><p>除了这两种情况以外，<code>OF</code> 为0。</p><p>使用补码表示有符号数时，最高有效位为0表示正数，最高有效位为1表示负数。因此上面的论述也可以表示为，<strong>两个正数相加得到负数，或者两个负数相加得到正数</strong>时 <code>OF</code> 置位，否则复位。</p><p>对于减法来说也是一样的，<strong>正数减去负数得到负数，或者负数减去正数得到正数</strong>则 <code>OF</code> 置位，否则均复位。</p><p>有符号数溢出总是发生在 <code>0x7f-0x80</code> 这个位置，也就是符号改变的时候。异号的两个数字求和结果位于他们之间，只要操作数本身没有溢出那么结果肯定就不会溢出，因此正数和负数相加不可能导致 <code>OF</code> 置位。</p><p>此外，<code>OF</code> 还有另一种理解方式，当次高位向最高有效位的进位值和最高有效位的溢出值不同的时候，<code>OF</code> 为1，否则为0。显然这个规律可以通过亦或运算来表示：$OF=Carray_In \bigoplus Carry_Out $ 。</p>]]></content>
     
