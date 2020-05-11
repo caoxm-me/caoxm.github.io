@@ -326,11 +326,11 @@
         <h1 id="一-编译方法"><a href="#一-编译方法" class="headerlink" title="一.编译方法"></a>一.编译方法</h1><p> <strong>1. 下载BuildTools</strong></p>
 <pre><code>官网链接：[https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar][1]。
 如果使用命令行，则可使用下面两种办法
-或者：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o BuildTools.jar -k https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar</span><br></pre></td></tr></table></figure>
+或者：  <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o BuildTools.jar -k https:<span class="regexp">//</span>hub.spigotmc.org<span class="regexp">/jenkins/</span>job<span class="regexp">/BuildTools/</span>lastSuccessfulBuild<span class="regexp">/artifact/</span>target<span class="regexp">/BuildTools.jar</span></span><br></pre></td></tr></table></figure>
 
-或者：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar</span><br></pre></td></tr></table></figure>
+或者：  <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O BuildTools.jar https:<span class="regexp">//</span>hub.spigotmc.org<span class="regexp">/jenkins/</span>job<span class="regexp">/BuildTools/</span>lastSuccessfulBuild<span class="regexp">/artifact/</span>target<span class="regexp">/BuildTools.jar</span></span><br></pre></td></tr></table></figure>
 </code></pre><p><strong>2. 使用BuildTools编译spigot</strong></p>
-<pre><code>在BuildTools.jar所在目录输入命令：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar BuildTools.jar --rev 1.12.2</span><br></pre></td></tr></table></figure>
+<pre><code>在BuildTools.jar所在目录输入命令：  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">java</span> <span class="selector-tag">-jar</span> <span class="selector-tag">BuildTools</span><span class="selector-class">.jar</span> <span class="selector-tag">--rev</span> 1<span class="selector-class">.12</span><span class="selector-class">.2</span></span><br></pre></td></tr></table></figure>
 </code></pre><h1 id="二-基本流程"><a href="#二-基本流程" class="headerlink" title="二.基本流程"></a>二.基本流程</h1><ol>
 <li>依次从相应git仓库clone文件到本地，文件存放在当前目录Bukkit、raftBukkit、Spigot、Builddata目录下</li>
 <li>安装apache-maven到当前目录下,使用maven构建项目</li>
