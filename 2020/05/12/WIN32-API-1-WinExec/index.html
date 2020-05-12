@@ -81,16 +81,17 @@
 
 
 
-<meta name="description" content="技术学习">
-<meta property="og:type" content="website">
-<meta property="og:title" content="漫无目的技术研究社">
-<meta property="og:url" content="http://yoursite.com/categories/minecraft/index.html">
+<meta name="description" content="WinExec函数原型如下： 1234UINT WinExec(  LPCSTR lpCmdLine,  UINT   uCmdShow); 该函数用于运行一个指定的应用程序，现在已经淘汰，仅用于保持对16位Windows操作系统的兼容，可以使用函数 CreateProcess 来代替。 参数说明：lpCmdLine ：运行程序所需的命令行参数（文件名+可选参数），若该参数中没有包含可执行文件的路">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WIN32 API(1)-WinExec">
+<meta property="og:url" content="http://yoursite.com/2020/05/12/WIN32-API-1-WinExec/index.html">
 <meta property="og:site_name" content="漫无目的技术研究社">
-<meta property="og:description" content="技术学习">
+<meta property="og:description" content="WinExec函数原型如下： 1234UINT WinExec(  LPCSTR lpCmdLine,  UINT   uCmdShow); 该函数用于运行一个指定的应用程序，现在已经淘汰，仅用于保持对16位Windows操作系统的兼容，可以使用函数 CreateProcess 来代替。 参数说明：lpCmdLine ：运行程序所需的命令行参数（文件名+可选参数），若该参数中没有包含可执行文件的路">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-05-12T03:07:07.026Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="漫无目的技术研究社">
-<meta name="twitter:description" content="技术学习">
+<meta name="twitter:title" content="WIN32 API(1)-WinExec">
+<meta name="twitter:description" content="WinExec函数原型如下： 1234UINT WinExec(  LPCSTR lpCmdLine,  UINT   uCmdShow); 该函数用于运行一个指定的应用程序，现在已经淘汰，仅用于保持对16位Windows操作系统的兼容，可以使用函数 CreateProcess 来代替。 参数说明：lpCmdLine ：运行程序所需的命令行参数（文件名+可选参数），若该参数中没有包含可执行文件的路">
 
 
 
@@ -120,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/minecraft/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/05/12/WIN32-API-1-WinExec/"/>
 
 
 
 
 
-  <title>分类: minecraft | 漫无目的技术研究社</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>WIN32 API(1)-WinExec | 漫无目的技术研究社</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -145,7 +146,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 	<a href="https://github.com/caoxm-me" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#64CEAA; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -219,83 +220,237 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>minecraft<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/12/WIN32-API-1-WinExec/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="caoxm">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/miaomiao.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="漫无目的技术研究社">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/03/01/Spigot插件学习-1-使用maven构建项目/" itemprop="url">
-              
-                <span itemprop="name">Spigot插件学习(1)---使用maven构建项目</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">WIN32 API(1)-WinExec</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-01T11:35:03+08:00"
-              content="2018-03-01" >
-          03-01
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-12T11:05:47+08:00">
+                2020-05-12
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Windows-API/" itemprop="url" rel="index">
+                    <span itemprop="name">Windows API</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/23/编译spigot/" itemprop="url">
-              
-                <span itemprop="name">编译Spigot Server</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-23T14:10:06+08:00"
-              content="2018-02-23" >
-          02-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
+        <h3 id="WinExec"><a href="#WinExec" class="headerlink" title="WinExec"></a>WinExec</h3><p>函数原型如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">UINT <span class="title">WinExec</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">  LPCSTR lpCmdLine,</span></span></span><br><span class="line"><span class="function"><span class="params">  UINT   uCmdShow</span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>该函数用于运行一个指定的应用程序，现在已经淘汰，仅用于保持对16位Windows操作系统的兼容，可以使用函数 <code>CreateProcess</code> 来代替。</p>
+<h6 id="参数说明："><a href="#参数说明：" class="headerlink" title="参数说明："></a>参数说明：</h6><p><code>lpCmdLine</code> ：运行程序所需的命令行参数（文件名+可选参数），若该参数中没有包含可执行文件的路径，将会自动按照下面顺序搜索可执行文件：</p>
+<ol>
+<li>应用程序被加载的目录</li>
+<li>当前目录</li>
+<li>Windows系统目录，该目录可以通过 <code>GetSystemDirectory</code> 函数获得</li>
+<li>Windows目录，该目录可以通过 <code>GetWindowsDirectory</code> 函数获得</li>
+<li>PATH环境变量中指定的目录</li>
+</ol>
+<p><code>uCmdShow</code>：显示方式，可以接受一系列预定义的值（SW宏），改参数和 <code>ShowWindow</code> 函数的 <code>nCmdShow</code> 参数含义一致。</p>
+<h6 id="返回值说明："><a href="#返回值说明：" class="headerlink" title="返回值说明："></a>返回值说明：</h6><p>该函数如果成功运行，返回值大于31</p>
+<p>该函数如果执行失败，返回值是下面错误值中的一个：</p>
+<table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>0</strong></td>
+<td>系统资源或者内存已用完</td>
+</tr>
+<tr>
+<td><strong>ERROR_BAD_FORMAT</strong></td>
+<td>无效的可执行文件</td>
+</tr>
+<tr>
+<td><strong>ERROR_FILE_NOT_FOUND</strong></td>
+<td>找不到指定的文件</td>
+</tr>
+<tr>
+<td><strong>ERROR_PATH_NOT_FOUND</strong></td>
+<td>找不到指定的路径</td>
+</tr>
+</tbody>
+</table>
+<h6 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h6><p>该函数会在被运行的程序执行 <code>GetMessage</code> 函数时返回，否则会一直等待直到超时。</p>
+<p>不当地使用该函数可能会导致安全问题，因为该函数总是将第一个空白字符分隔的字符串当成可执行文件名，因此如果可执行文件路径包含空格就会导致错误：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WinExec(<span class="string">"C:\\Program Files\\MyApp"</span>, ...);</span><br></pre></td></tr></table></figure>
+<p>此时会运行应用程序 Program.exe，而不是 MyApp.exe。如果别用用心的人在系统目录下创建了 Program.exe，则所有像上面那样错误使用了该函数的应用程序都会运行 Program.exe。</p>
+<p>可以使用 <code>CreateProcess</code> 来避免这个错误，也可以给包含空格的路径添加引号：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WinExec(<span class="string">"\"C:\\Program Files\\MyApp.exe\" -L -S"</span>, ...)</span><br></pre></td></tr></table></figure>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.jpg" alt="caoxm 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="caoxm 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/04/进位标志和溢出标志的含义和理解/" rel="next" title="进位标志和溢出标志的含义和理解">
+                <i class="fa fa-chevron-left"></i> 进位标志和溢出标志的含义和理解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -303,6 +458,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -323,8 +482,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -408,6 +576,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#WinExec"><span class="nav-number">1.</span> <span class="nav-text">WinExec</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#参数说明："><span class="nav-number">1.0.0.1.</span> <span class="nav-text">参数说明：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#返回值说明："><span class="nav-number">1.0.0.2.</span> <span class="nav-text">返回值说明：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#注意事项："><span class="nav-number">1.0.0.3.</span> <span class="nav-text">注意事项：</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -555,6 +739,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -612,26 +800,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 

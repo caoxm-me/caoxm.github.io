@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-03T16:51:50.548Z</updated>
+  <updated>2020-05-12T03:07:07.026Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>WIN32 API(1)-WinExec</title>
+    <link href="http://yoursite.com/2020/05/12/WIN32-API-1-WinExec/"/>
+    <id>http://yoursite.com/2020/05/12/WIN32-API-1-WinExec/</id>
+    <published>2020-05-12T03:05:47.000Z</published>
+    <updated>2020-05-12T03:07:07.026Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="WinExec"><a href="#WinExec" class="headerlink" title="WinExec"></a>WinExec</h3><p>函数原型如下：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">UINT <span class="title">WinExec</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">  LPCSTR lpCmdLine,</span></span></span><br><span class="line"><span class="function"><span class="params">  UINT   uCmdShow</span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>;</span><br></pre></td></tr></table></figure><p>该函数用于运行一个指定的应用程序，现在已经淘汰，仅用于保持对16位Windows操作系统的兼容，可以使用函数 <code>CreateProcess</code> 来代替。</p><h6 id="参数说明："><a href="#参数说明：" class="headerlink" title="参数说明："></a>参数说明：</h6><p><code>lpCmdLine</code> ：运行程序所需的命令行参数（文件名+可选参数），若该参数中没有包含可执行文件的路径，将会自动按照下面顺序搜索可执行文件：</p><ol><li>应用程序被加载的目录</li><li>当前目录</li><li>Windows系统目录，该目录可以通过 <code>GetSystemDirectory</code> 函数获得</li><li>Windows目录，该目录可以通过 <code>GetWindowsDirectory</code> 函数获得</li><li>PATH环境变量中指定的目录</li></ol><p><code>uCmdShow</code>：显示方式，可以接受一系列预定义的值（SW宏），改参数和 <code>ShowWindow</code> 函数的 <code>nCmdShow</code> 参数含义一致。</p><h6 id="返回值说明："><a href="#返回值说明：" class="headerlink" title="返回值说明："></a>返回值说明：</h6><p>该函数如果成功运行，返回值大于31</p><p>该函数如果执行失败，返回值是下面错误值中的一个：</p><table><thead><tr><th>返回值</th><th>说明</th></tr></thead><tbody><tr><td><strong>0</strong></td><td>系统资源或者内存已用完</td></tr><tr><td><strong>ERROR_BAD_FORMAT</strong></td><td>无效的可执行文件</td></tr><tr><td><strong>ERROR_FILE_NOT_FOUND</strong></td><td>找不到指定的文件</td></tr><tr><td><strong>ERROR_PATH_NOT_FOUND</strong></td><td>找不到指定的路径</td></tr></tbody></table><h6 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h6><p>该函数会在被运行的程序执行 <code>GetMessage</code> 函数时返回，否则会一直等待直到超时。</p><p>不当地使用该函数可能会导致安全问题，因为该函数总是将第一个空白字符分隔的字符串当成可执行文件名，因此如果可执行文件路径包含空格就会导致错误：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WinExec(<span class="string">"C:\\Program Files\\MyApp"</span>, ...);</span><br></pre></td></tr></table></figure><p>此时会运行应用程序 Program.exe，而不是 MyApp.exe。如果别用用心的人在系统目录下创建了 Program.exe，则所有像上面那样错误使用了该函数的应用程序都会运行 Program.exe。</p><p>可以使用 <code>CreateProcess</code> 来避免这个错误，也可以给包含空格的路径添加引号：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WinExec(<span class="string">"\"C:\\Program Files\\MyApp.exe\" -L -S"</span>, ...)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;WinExec&quot;&gt;&lt;a href=&quot;#WinExec&quot; class=&quot;headerlink&quot; title=&quot;WinExec&quot;&gt;&lt;/a&gt;WinExec&lt;/h3&gt;&lt;p&gt;函数原型如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="Windows API" scheme="http://yoursite.com/categories/Windows-API/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>进位标志和溢出标志的含义和理解</title>
